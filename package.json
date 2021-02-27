@@ -1,6 +1,6 @@
 {
   "name": "pousser",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Pousser http client for Node.js",
   "main": "index.js",
   "scripts": {
