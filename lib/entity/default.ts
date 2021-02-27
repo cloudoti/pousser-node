@@ -7,7 +7,7 @@ export interface DefaultConfig {
 
 const Defaults: DefaultConfig = {
   protocol: 'wss',
-  host: 'api.pousser.com',
+  host: 'api.pousser.io',
   port: 443,
   env: 'production',
 };
