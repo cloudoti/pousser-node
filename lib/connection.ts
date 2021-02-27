@@ -1,12 +1,12 @@
 import Logger from './utils/logger';
 import { Options } from './entity/option';
-import { getEnvPath, getHost } from './utils/config';
+import { getEnvPath, getHost, getProtocol } from './utils/config';
 
 class Connection {
   constructor(appId: string, options?: Options) {
     options = options || {};
 
-    this.ws = new WebSocket(`https://${getHost(options)}/ws/${appId}${getEnvPath(options)}`);
+    this.ws = new WebSocket(`${getProtocol(options)}://${getHost(options)}/ws/${appId}${getEnvPath(options)}`);
 
     const current = this;
 
