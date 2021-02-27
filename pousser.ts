@@ -12,26 +12,26 @@ export default class Pousser {
 
   static log: (message: any) => void;
 
-  constructor(app_id: string, options?: Options) {
-    validateAppId(app_id);
+  constructor(appId: string, options?: Options) {
+    validateAppId(appId);
     options = options || {};
 
-    this.appID = app_id;
+    this.appID = appId;
     this.config = getConfig(options);
     this.sessionID = Math.floor(Math.random() * 1000000000);
 
-    this.connection = new Connection(app_id, options);
+    this.connection = new Connection(appId, options);
   }
 
-  subscribe(channel: string, cb: Function) {
+  subscribe(channel: string, cb: (data: any) => void) {
     this.connection.subscribe(channel, cb);
   }
 
-  bind(channel: string, eventName: string, cb: Function) {
+  bind(channel: string, eventName: string, cb: (data: any) => void) {
     this.connection.bind(channel, eventName, cb);
   }
 
-  unsubscribe(channel: string, cb: Function) {
+  unsubscribe(channel: string, cb: (data: any) => void) {
     this.connection.unsubscribe(channel, cb);
   }
 
@@ -39,19 +39,18 @@ export default class Pousser {
     this.connection.disconnect();
   }
 
-  bindOnclose(cb: Function) {
+  bindOnclose(cb: (data: any) => void) {
     this.connection.bindOnclose(cb);
   }
 
   appID: string;
-  key: string;
   config: Config;
   sessionID: number;
   private connection: Connection;
 }
 
-function validateAppId(app_id) {
-  if (app_id === null || app_id === undefined) {
-    throw 'app_id is required to instantiate Pousser.';
+function validateAppId(appId: string) {
+  if (appId === null || appId === undefined) {
+    throw new Error('appId is required to instantiate Pousser.');
   }
 }

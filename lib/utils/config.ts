@@ -9,7 +9,7 @@ export interface Config {
 }
 
 export function getConfig(opts: Options): Config {
-  let config: Config = {
+  const config: Config = {
     host: opts.host || Defaults.host,
     port: opts.port || Defaults.port,
     env: opts.env || Defaults.env,
@@ -27,9 +27,9 @@ export function getHost(opts: Options): string {
 }
 
 export function getEnvPath(opts: Options): string {
-    if (opts.env && opts.env !== Defaults.env) {
-      return '/' + opts.env;
-    }
-  
-    return '';
+  if (opts.env && opts.env !== Defaults.env) {
+    return '/' + opts.env;
   }
+
+  return '';
+}

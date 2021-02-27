@@ -1,12 +1,10 @@
 export interface DefaultConfig {
-  //VERSION: string;
   host: string;
   port: number;
   env: string;
 }
 
-var Defaults: DefaultConfig = {
-  //VERSION: VERSION,
+const Defaults: DefaultConfig = {
   host: 'api.pousser.com',
   port: 443,
   env: 'production',
