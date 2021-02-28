@@ -20,7 +20,7 @@ export default class Pousser {
     this.config = getConfig(options);
     this.sessionID = Math.floor(Math.random() * 1000000000);
 
-    this.connection = new Connection(appId, options);
+    this.connection = Connection.getInstance(appId, options);
   }
 
   subscribe(channel: string, cb: (data: any) => void) {

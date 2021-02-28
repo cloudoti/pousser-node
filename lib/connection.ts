@@ -3,7 +3,9 @@ import { Options } from './entity/option';
 import { getEnvPath, getHost, getProtocol } from './utils/config';
 
 class Connection {
-  constructor(appId: string, options?: Options) {
+  private static instance: Connection;
+
+  private constructor(appId: string, options?: Options) {
     options = options || {};
 
     this.ws = new WebSocket(`${getProtocol(options)}://${getHost(options)}/ws/${appId}${getEnvPath(options)}`);
@@ -51,6 +53,14 @@ class Connection {
 
     this.channels = {};
     this.onClose = [];
+  }
+
+  public static getInstance(appId: string, options?: Options): Connection {
+    if (!Connection.instance) {
+      Connection.instance = new Connection(appId, options);
+    }
+
+    return Connection.instance;
   }
 
   subscribe(channel: string, cb: (data: any) => void) {
