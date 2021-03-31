@@ -73,7 +73,7 @@ class Connection {
   }
 
   isConnected() {
-    this.ws.readyState == WebSocket.OPEN;
+    return this.ws.readyState === WebSocket.OPEN;
   }
 
   subscribe(channel: string, cb: (data: any) => void) {
