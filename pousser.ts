@@ -23,6 +23,14 @@ export default class Pousser {
     this.connection = Connection.getInstance(appId, options);
   }
 
+  bindOnOpen(cb: (data: any) => void) {
+    this.connection.bindOnOpen(cb);
+  }
+
+  isConnected() {
+    this.connection.isConnected();
+  }
+
   subscribe(channel: string, cb: (data: any) => void) {
     this.connection.subscribe(channel, cb);
   }
@@ -39,8 +47,8 @@ export default class Pousser {
     this.connection.disconnect();
   }
 
-  bindOnclose(cb: (data: any) => void) {
-    this.connection.bindOnclose(cb);
+  bindOnClose(cb: (data: any) => void) {
+    this.connection.bindOnClose(cb);
   }
 
   appID: string;

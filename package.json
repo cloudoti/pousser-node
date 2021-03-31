@@ -1,6 +1,6 @@
 {
   "name": "pousser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Pousser realtime javascript library",
   "main": "dist/pousser.js",
   "files": ["dist/**/*"],

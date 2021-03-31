@@ -19,6 +19,10 @@ class Connection {
           current.channels[kChan].connected = true;
         }
       });
+
+      this.onOpen.forEach((value) => {
+        value(evt);
+      });
     };
 
     this.ws.onclose = (evt) => {
@@ -52,6 +56,7 @@ class Connection {
     };
 
     this.channels = {};
+    this.onOpen = [];
     this.onClose = [];
   }
 
@@ -61,6 +66,14 @@ class Connection {
     }
 
     return Connection.instance;
+  }
+
+  bindOnOpen(cb: (data: any) => void) {
+    this.onOpen.push(cb);
+  }
+
+  isConnected() {
+    this.ws.readyState == WebSocket.OPEN;
   }
 
   subscribe(channel: string, cb: (data: any) => void) {
@@ -147,7 +160,7 @@ class Connection {
     this.ws.close();
   }
 
-  bindOnclose(cb: (data: any) => void) {
+  bindOnClose(cb: (data: any) => void) {
     this.onClose.push(cb);
   }
 
@@ -163,6 +176,7 @@ class Connection {
 
   ws: WebSocket;
   channels: any;
+  onOpen: any[];
   onClose: any[];
 }
 
