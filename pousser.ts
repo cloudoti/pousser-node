@@ -28,7 +28,7 @@ export default class Pousser {
   }
 
   isConnected() {
-    this.connection.isConnected();
+    return this.connection.isConnected();
   }
 
   subscribe(channel: string, cb: (data: any) => void) {
