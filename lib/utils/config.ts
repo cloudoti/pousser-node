@@ -36,6 +36,14 @@ export function getHost(opts: Options): string {
   return Defaults.host;
 }
 
+export function getPort(opts: Options): number {
+  if (opts.port) {
+    return opts.port;
+  }
+
+  return Defaults.port;
+}
+
 export function getEnvPath(opts: Options): string {
   if (opts.env && opts.env !== Defaults.env) {
     return '/' + opts.env;

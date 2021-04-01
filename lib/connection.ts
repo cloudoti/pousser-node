@@ -1,6 +1,6 @@
 import Logger from './utils/logger';
 import { Options } from './entity/option';
-import { getEnvPath, getHost, getProtocol } from './utils/config';
+import { getEnvPath, getHost, getPort, getProtocol } from './utils/config';
 
 class Connection {
   private static instance: Connection;
@@ -8,7 +8,7 @@ class Connection {
   private constructor(appId: string, options?: Options) {
     options = options || {};
 
-    this.ws = new WebSocket(`${getProtocol(options)}://${getHost(options)}/ws/${appId}${getEnvPath(options)}`);
+    this.ws = new WebSocket(`${getProtocol(options)}://${getHost(options)}:${getPort(options)}/ws/${appId}${getEnvPath(options)}`);
 
     const current = this;
 
