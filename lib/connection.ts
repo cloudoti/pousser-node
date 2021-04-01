@@ -8,7 +8,9 @@ class Connection {
   private constructor(appId: string, options?: Options) {
     options = options || {};
 
-    this.ws = new WebSocket(`${getProtocol(options)}://${getHost(options)}:${getPort(options)}/ws/${appId}${getEnvPath(options)}`);
+    this.ws = new WebSocket(
+      `${getProtocol(options)}://${getHost(options)}:${getPort(options)}/ws/${appId}${getEnvPath(options)}`,
+    );
 
     const current = this;
 
