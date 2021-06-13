@@ -1,4 +1,7 @@
-import Pousser from '../../pousser';
+//import Pousser from '../../pousser';
+
+/// <reference path="./../connection.ts" />
+/// <reference path="../../pousser.ts" />
 
 class Logger {
   debug(...args: any[]) {
@@ -21,4 +24,4 @@ class Logger {
   }
 }
 
-export default new Logger();
+//export default new Logger();

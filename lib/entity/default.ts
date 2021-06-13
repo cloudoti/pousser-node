@@ -1,4 +1,4 @@
-export interface DefaultConfig {
+interface DefaultConfig {
   protocol: string;
   host: string;
   port: number;
@@ -12,4 +12,4 @@ const Defaults: DefaultConfig = {
   env: 'production',
 };
 
-export default Defaults;
+//export default Defaults;

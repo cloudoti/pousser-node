@@ -1,12 +1,15 @@
-import Logger from './utils/logger';
-import { Options } from './entity/option';
-import { getEnvPath, getHost, getPort, getProtocol } from './utils/config';
+//import Logger from './utils/logger';
+//import { Options } from './entity/option';
+//import { getEnvPath, getHost, getPort, getProtocol } from './utils/config';
+
+/// <reference path="./utils/logger.ts" />
 
 class Connection {
   private static instance: Connection;
 
   private constructor(appId: string, options?: Options) {
     options = options || {};
+    this.logger = new Logger();
 
     this.ws = new WebSocket(
       `${getProtocol(options)}://${getHost(options)}:${getPort(options)}/ws/${appId}${getEnvPath(options)}`,
@@ -42,7 +45,7 @@ class Connection {
     this.ws.onmessage = (evt) => {
       const data = JSON.parse(evt.data);
 
-      Logger.warn('notification received ', data);
+      this.logger.warn('notification received ', data);
 
       this.channels[data.channel].callbacks.forEach((cb: (data: any) => void) => {
         cb(data);
@@ -167,12 +170,12 @@ class Connection {
   }
 
   private createSubscription(channel: string) {
-    Logger.warn('Subscribe channel', channel);
+    this.logger.warn('Subscribe channel', channel);
     this.ws.send(JSON.stringify({ eventName: 'pousser:subscribe', channel }));
   }
 
   private removeSubscription(channel: string) {
-    Logger.warn('Remove channel', channel);
+    this.logger.warn('Remove channel', channel);
     this.ws.send(JSON.stringify({ eventName: 'pousser:unsubscribe', channel }));
   }
 
@@ -180,6 +183,7 @@ class Connection {
   channels: any;
   onOpen: any[];
   onClose: any[];
+  logger: Logger;
 }
 
-export default Connection;
+//export default Connection;

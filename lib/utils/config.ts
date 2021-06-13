@@ -1,15 +1,18 @@
-import { Options } from '../entity/option';
-import Defaults from '../entity/default';
-import Logger from './logger';
+//import { Options } from '../entity/option';
+//import Defaults from '../entity/default';
+//import Logger from './logger';
 
-export interface Config {
+/// <reference path="../entity/option.ts" />
+/// <reference path="../entity/default.ts" />
+
+interface Config {
   protocol: string;
   host: string;
   port: number;
   env: string;
 }
 
-export function getConfig(opts: Options): Config {
+function getConfig(opts: Options): Config {
   const config: Config = {
     protocol: opts.protocol || Defaults.protocol,
     host: opts.host || Defaults.host,
@@ -20,7 +23,7 @@ export function getConfig(opts: Options): Config {
   return config;
 }
 
-export function getProtocol(opts: Options): string {
+function getProtocol(opts: Options): string {
   if (opts.protocol) {
     return opts.protocol;
   }
@@ -28,7 +31,7 @@ export function getProtocol(opts: Options): string {
   return Defaults.protocol;
 }
 
-export function getHost(opts: Options): string {
+function getHost(opts: Options): string {
   if (opts.host) {
     return opts.host;
   }
@@ -36,7 +39,7 @@ export function getHost(opts: Options): string {
   return Defaults.host;
 }
 
-export function getPort(opts: Options): number {
+function getPort(opts: Options): number {
   if (opts.port) {
     return opts.port;
   }
@@ -44,7 +47,7 @@ export function getPort(opts: Options): number {
   return Defaults.port;
 }
 
-export function getEnvPath(opts: Options): string {
+function getEnvPath(opts: Options): string {
   if (opts.env && opts.env !== Defaults.env) {
     return '/' + opts.env;
   }

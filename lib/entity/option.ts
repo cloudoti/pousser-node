@@ -1,4 +1,4 @@
-export interface Options {
+interface Options {
   protocol?: string;
   host?: string;
   port?: number;

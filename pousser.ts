@@ -1,9 +1,14 @@
-import Logger from './lib/utils/logger';
-import { Options } from './lib/entity/option';
-import { Config, getConfig, getHost, getEnvPath } from './lib/utils/config';
-import Connection from './lib/connection';
+//import Logger from './lib/utils/logger';
+//import { Options } from './lib/entity/option';
+//import { Config, getConfig, getHost, getEnvPath } from './lib/utils/config';
+//import Connection from './lib/connection';
 
-export default class Pousser {
+/// <reference path="./lib/utils/logger.ts" />
+/// <reference path="./lib/entity/option.ts" />
+/// <reference path="./lib/utils/config.ts" />
+/// <reference path="./lib/connection.ts" />
+
+class Pousser {
   static isReady: boolean = false;
 
   static ready() {
